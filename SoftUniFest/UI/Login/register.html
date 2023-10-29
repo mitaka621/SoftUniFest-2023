@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/Login/styles1.css" />
+    <link rel="stylesheet" href="styles1.css" />
+    <title>Create Account</title>
+  </head>
+  <body>
+    <div class="container">
+      <form class="modal-content animate" action="/register" method="POST">
+        <label for="firstn"><b>First Name:</b></label>
+        <input
+          type="text"
+          placeholder="Enter First Name"
+          name="firstn"
+          required
+        />
+
+        <label for="lastn"><b>Last Name:</b></label>
+        <input
+          type="text"
+          placeholder="Enter Last Name"
+          name="lastn"
+          required
+        />
+
+        <label for="email"><b>Email:</b></label>
+        <input
+          type="text"
+          placeholder="Enter Email"
+          name="email"
+          pattern="[a-z0-9]+@[a-z0-9]+\.[a-z]{2,}$"
+          title="Please enter a valid email address"
+          required
+        />
+
+        <label for="psw"><b>Password:</b></label>
+        <input
+          type="password"
+          placeholder="Enter Password"
+          name="psw"
+          pattern="^(?=.*[A-Za-z])(?=.*\d).{8,}$"
+          title="Password must be at least 8 characters long and contain at least 1 letter and 1 number"
+          required
+        />
+
+        <label for="cars">Choose a user type:</label>
+
+        <select name="usertype" id="usertype">
+          <option value="normal">Normal User</option>
+          <option value="business">Business User</option>
+        </select>
+
+        <button type="submit">Register</button>
+        <p>Already a member? <a href="/">Log in.</a></p>
+      </form>
+    </div>
+  </body>
+</html>

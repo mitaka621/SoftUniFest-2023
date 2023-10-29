@@ -1,0 +1,68 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+form {
+  border: 3px solid #f1f1f1;
+  padding: 1em;
+}
+.container {
+  display: flex;
+  height: 90vh;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 20px;
+  box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+}
+form * {
+  border-radius: 20px;
+}
+form label {
+  margin-top: 1em;
+  margin-bottom: 0.2em;
+  text-align: center;
+}
+form input {
+  width: 18em;
+  background-color: rgba(128, 128, 128, 0.137);
+  text-align: center;
+  margin: 0 auto;
+  font-size: 1.1em;
+  padding: 0.3em;
+  border: 2px solid #75ccc8;
+}
+form button {
+  font-size: 1.3em;
+  width: fit-content;
+  margin: 1em auto;
+  padding: 0.2em 0.5em;
+  border: none;
+  border: 2px solid black;
+  background-color: greenyellow;
+}
+form button:hover {
+  cursor: pointer;
+}
+p {
+  text-align: center;
+}
+
+.namescontainer {
+  margin-top: 1em;
+  margin-left: 1em;
+}
+.namescontainer input {
+  margin-right: 1em;
+}
+
+select {
+  font-size: 1.3em;
+}

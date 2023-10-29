@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <img src="./resources/logo.png" alt="" />
+    <img src="./static/resources/logo.png" alt="" />
+    <header>
+      <p id="email">testmail@mail.bg</p>
+      <a onclick="logOut()">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          height="1.3em"
+          viewBox="0 0 512 512"
+        >
+          <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+          <style>
+            svg {
+              fill: white;
+            }
+          </style>
+          <path
+            d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V256c0 17.7 14.3 32 32 32s32-14.3 32-32V32zM143.5 120.6c13.6-11.3 15.4-31.5 4.1-45.1s-31.5-15.4-45.1-4.1C49.7 115.4 16 181.8 16 256c0 132.5 107.5 240 240 240s240-107.5 240-240c0-74.2-33.8-140.6-86.6-184.6c-13.6-11.3-33.8-9.4-45.1 4.1s-9.4 33.8 4.1 45.1c38.9 32.3 63.5 81 63.5 135.4c0 97.2-78.8 176-176 176s-176-78.8-176-176c0-54.4 24.7-103.1 63.5-135.4z"
+          />
+        </svg>
+      </a>
+    </header>
+    <main>
+      <div class="sidemenu">
+        <a href="/dashboard"
+          ><svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="1em"
+            viewBox="0 0 512 512"
+          >
+            <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+            <style>
+              svg {
+                fill: #ffffff;
+              }
+            </style>
+            <path
+              d="M0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm320 96c0-26.9-16.5-49.9-40-59.3V88c0-13.3-10.7-24-24-24s-24 10.7-24 24V292.7c-23.5 9.5-40 32.5-40 59.3c0 35.3 28.7 64 64 64s64-28.7 64-64zM144 176a32 32 0 1 0 0-64 32 32 0 1 0 0 64zm-16 80a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zm288 32a32 32 0 1 0 0-64 32 32 0 1 0 0 64zM400 144a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z"
+            />
+          </svg>
+          Dashboard</a
+        >
+        <a onclick="LoadTable()">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="1em"
+            viewBox="0 0 576 512"
+          >
+            <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+            <style>
+              svg {
+                fill: #ffffff;
+              }
+            </style>
+            <path
+              d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"
+            />
+          </svg>Sales</a>
+            
+        <a onclick="Stats()"><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><style>svg{fill:#ffffff}</style><path d="M160 80c0-26.5 21.5-48 48-48h32c26.5 0 48 21.5 48 48V432c0 26.5-21.5 48-48 48H208c-26.5 0-48-21.5-48-48V80zM0 272c0-26.5 21.5-48 48-48H80c26.5 0 48 21.5 48 48V432c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V272zM368 96h32c26.5 0 48 21.5 48 48V432c0 26.5-21.5 48-48 48H368c-26.5 0-48-21.5-48-48V144c0-26.5 21.5-48 48-48z"/></svg>Stats</a>
+      </div>
+
+      <div class="main">
+        <h1>Dashboard</h1>
+        <a onclick="manageForm1()">Add Business</a>
+
+        <form class="bizform" action="/registerBusiness" method="post">
+          <label for="name">Business Name:</label><br />
+          <input type="text" id="name" name="name" required /><br /><br />
+
+          <label for="description">Business Description:</label><br />
+          <textarea
+            id="description"
+            name="description"
+            rows="4"
+            cols="50"
+            required
+          ></textarea
+          ><br /><br />
+
+          <label for="imgUrl">Image URL:</label><br />
+          <input
+            type="text"
+            id="imgUrl"
+            name="imgUrl"
+            value="https://images.pexels.com/photos/3683053/pexels-photo-3683053.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load"
+          /><br /><br />
+
+          <input type="submit" value="Submit" />
+        </form>
+        <div class="bisanditems">
+          <div class="biscontainer" onclick="Expand(this)">
+            <h2>The name of the buisness</h2>
+            <hr />
+            <div class="container">
+              <img
+                src="https://images.pexels.com/photos/1080388/pexels-photo-1080388.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load"
+                alt=""
+              />
+              <div>
+                <h3>Description</h3>
+                <p>
+                  tempore quisquam neque, a placeat ducimus labore. Unde vero
+                  nihil optio voluptatibus perferendis quod ipsa laborum. Lorem
+                  ipsum dolor sit amet consectetur adipisicing elit. Minima
+                  dolorem facere, quos officiis error, tempore quisquam neque, a
+                  placeat ducimus labore. Unde vero nihil optio voluptatibus
+                  perferendis quod ipsa laborum.
+                </p>
+              </div>
+              <div class="status">
+                <h3>Status</h3>
+                <p>Active Products: 13</p>
+                <p>Sold Products: 139</p>
+                <p>Earnings: 23lv</p>
+              </div>
+            </div>
+          </div>
+          <a onclick="manageForm2(this)">Add Product</a>
+          <form action="/addProduct" method="post">
+            <div>
+              <input type="hidden" id="businessId" name="businessId" value="" />
+              <label for="name">Product Name:</label><br />
+              <input type="text" id="name" name="name" required /><br /><br />
+
+              <label for="quantity">Quantity:</label><br />
+              <input
+                type="number"
+                id="quantity"
+                name="quantity"
+                required
+              /><br /><br />
+
+              <label for="price">Price:</label><br />
+              <input
+                type="number"
+                id="price"
+                name="price"
+                step="0.01"
+                required
+              /><br /><br />
+
+              <label for="imgUrl">Image URL:</label><br />
+              <input
+                type="text"
+                id="imgUrl"
+                name="imgUrl"
+                required
+              /><br /><br />
+            </div>
+            <label for="prodDescription">Product Description:</label><br />
+            <textarea
+              id="prodDescription"
+              name="prodDescription"
+              rows="4"
+              cols="50"
+              resize="none"
+            ></textarea>
+            <input type="submit" value="Add Product" />
+          </form>
+          <div class="items">
+            <img
+              src="https://images.pexels.com/photos/8952566/pexels-photo-8952566.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load"
+              alt=""
+            />
+            <p>Name of the product</p>
+            <input type="text" name="quantity" value="123" />
+            <a href="">Apply</a>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script src="./script.js"></script>
+    <script src="./static/script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete</title>
+</head>
+<body>
+    <div class="container">
+      <svg xmlns="http://www.w3.org/2000/svg" height="10em" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><style>svg{fill:#02f723}</style><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/></svg>
+        <h1>Account Created successfully</h1>
+        <h2>Redirecting to login in 3 sec...</h2>
+    </div>
+</body>
+</html>
+
+<style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin-top: 6em;
+    }
+    a {
+      display: inline-block;
+    }
+    svg {
+      margin-bottom: 2em;
+    }
+  </style>
+
+<script>
+    setTimeout(() => {
+        window.location.href = '/';
+    }, 3000); // 5000 milliseconds = 5 seconds
+</script>
