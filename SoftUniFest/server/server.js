@@ -33,6 +33,7 @@ const app = express();
 const port = 3000;
 const secretKey = "hfjdks*#$#fhjkf*@$hdjvnqq!nbb689";
 
+app.use(bodyParser.json());
 app.use(cors());
 app.use(fileUpload());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -179,7 +180,7 @@ app.get("/getitems/:id", authenticateToken, async (req, res) => {
       .request()
       .input("Id", sql.Int, req.params.id)
       .query(
-        "select p.ImgURL, p.Name,p.Price,p.Quantity,p.Description from Business as b join BusinessProducts as bp on b.Id=bp.BusinessId join Products as p on bp.ProductsId=p.Id where b.Id=@Id"
+        "select p.ImgURL, p.Name,p.Price,p.Quantity,p.Description,p.Id from Business as b join BusinessProducts as bp on b.Id=bp.BusinessId join Products as p on bp.ProductsId=p.Id where b.Id=@Id order by p.Quantity desc"
       );
     await pool.close();
     sql.close();
@@ -430,6 +431,30 @@ app.get("/sales", authenticateToken, async (req, res) => {
     res.send(response.recordset);
   } catch (err) {
     console.log(err);
+  }
+});
+
+app.patch('/product/:id', async(req, res) => {
+  const productId = parseInt(req.params.id);
+  const { price, quantity } = req.body;
+  try {
+    let pool = await sql.connect(config);
+    await pool
+      .request()
+      .input("productId", sql.Int, productId)
+      .input("price", sql.Decimal(20,2),price )
+      .input("quantity", sql.Int,quantity)
+      .query(
+        `update Products
+        set Price=@price, Quantity=@quantity
+        where Id=@productId;`
+      );
+
+    await pool.close();
+    sql.close();
+    res.sendStatus(200);
+  } catch (err) {
+    res.sendStatus(404);
   }
 });
 

@@ -141,8 +141,8 @@ main {
 .items input {
   font-size: 1.4em;
   height: 30px;
-  width: 70px;
-  text-align: center;
+  width: 100px;
+  text-align: start;
 }
 .container div:nth-child(2) {
   width: 50%;
@@ -285,4 +285,11 @@ svg {
 }
 a[onclick="logOut()"] svg{
  margin: 0.2em 1.2em 0 1em ;
+}
+a:hover{
+  cursor: pointer;
+}
+a[onclick="Apply(this)"]{
+  margin-right: 1em;
+  padding: 1em;
 }

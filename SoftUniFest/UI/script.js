@@ -99,7 +99,7 @@ function Expand(e) {
       .then((response) => response.json())
       .then((data) => {
         data.forEach((item) => {
-          parent.innerHTML += ` <div class="items">
+          parent.innerHTML += ` <div id="${item.Id}" class="items">
         <img
           src="${item.ImgURL}"
           alt=""
@@ -114,7 +114,7 @@ function Expand(e) {
           <input type="number" name="quantity" value="${item.Quantity}" />
         </div>
         
-        <a href="">Apply</a>
+        <a onclick="Apply(this)">Apply</a>
       </div>`;
         });
       })
@@ -210,5 +210,27 @@ function Stats() {
       document.querySelector(".main").innerHTML = `<h2>Statistics<h2>
       <h2>Total Revenu - ${sum.toFixed(2)}lv<h2>
     `;
+    });
+}
+function Apply(e) {
+  const price=e.parentElement.querySelector(`input[name="price"]`).value;
+  const quantity=e.parentElement.querySelector(`input[name="quantity"]`).value;
+  const data = {
+    price: price, // Replace with the updated price
+    quantity:  quantity// Replace with the updated quantity
+  };
+console.log(data);
+  fetch(`/product/${e.parentElement.id}`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  })
+    .then(data => {
+      location.reload();
+    })
+    .catch(error => {
+      console.error('Error:', error);
     });
 }
