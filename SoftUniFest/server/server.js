@@ -18,8 +18,8 @@ let config = {
   authentication: {
     type: "default",
     options: {
-      userName: "user", // update me
-      password: "1234", // update me
+      userName: "user", 
+      password: "1234", 
     },
   },
   options: {
@@ -43,26 +43,20 @@ app.use((req, res, next) => {
   next();
 });
 app.use(function (req, res, next) {
-  // Website you wish to allow to connect
   res.setHeader("Access-Control-Allow-Origin", "http://localhost:8888");
 
-  // Request methods you wish to allow
   res.setHeader(
     "Access-Control-Allow-Methods",
     "GET, POST, OPTIONS, PUT, PATCH, DELETE"
   );
 
-  // Request headers you wish to allow
   res.setHeader(
     "Access-Control-Allow-Headers",
     "X-Requested-With,content-type"
   );
 
-  // Set to true if you need the website to include cookies in the requests sent
-  // to the API (e.g. in case you use sessions)
   res.setHeader("Access-Control-Allow-Credentials", true);
 
-  // Pass to next layer of middleware
   next();
 });
 
@@ -86,10 +80,8 @@ app.post("/register", (req, res) => {
         return console.log("Cannot encrypt");
       }
       try {
-        // Make sure to await the pool request
         let pool = await sql.connect(config);
 
-        // Use the pool to query the database
         await pool
           .request()
           .input("FirstName", sql.NVarChar(255), firstName)
@@ -104,7 +96,6 @@ app.post("/register", (req, res) => {
         await pool.close();
         sql.close();
       } catch (err) {
-        // ... error checks
         console.error("Error: ", err);
       }
     });
@@ -176,7 +167,6 @@ app.get("/businesses", authenticateToken, async (req, res) => {
     obj = { email: response2.recordset[0].Email, obj: result.recordset };
     res.send(obj).status(200);
 
-    //console.log(result.recordset);
   } catch (err) {
     console.log(err);
   }
@@ -200,15 +190,14 @@ app.get("/getitems/:id", authenticateToken, async (req, res) => {
 });
 
 app.post("/logOut", authenticateToken, (req, res) => {
-  res.clearCookie("token"); // Clear the cookie named 'token'
+  res.clearCookie("token"); 
   res.clearCookie("Id");
-  res.redirect("/"); // Redirect to the login page
+  res.redirect("/"); 
 });
 
 app.post("/registerBusiness", authenticateToken, async (req, res) => {
   const { name, description, imgUrl } = req.body;
   const id = req.cookies.Id;
-  // Handle the data as needed, for example:
   try {
     let pool = await sql.connect(config);
     let result = await pool
@@ -405,28 +394,7 @@ app.get("/status/:id", authenticateToken, async (req, res) => {
         join Business as b on bp.BusinessId=b.Id
         where Completed=1 and b.Id=@id`
       );
-    // const soldProducts = await pool
-    //   .request()
-    //   .input("id", sql.Int, id)
-    //   .query(
-    //     `select COUNT(*) as [soldprod]
-    //     from Payments as p
-    //     join Products as pr on p.ProductId=pr.Id
-    //     join BusinessProducts as bp on bp.ProductsId=pr.Id
-    //     join Business as b on bp.BusinessId=b.Id
-    //     where Completed=1 and b.Id=@id`
-    //   );
-    // const profit = await pool
-    //   .request()
-    //   .input("id", sql.Int, id)
-    //   .query(
-    //     `select Sum(Price) as [profit]
-    //     from Payments as p
-    //     join Products as pr on p.ProductId=pr.Id
-    //     join BusinessProducts as bp on bp.ProductsId=pr.Id
-    //     join Business as b on bp.BusinessId=b.Id
-    //     where Completed=1 and b.Id=@id`
-    //   );
+    
     await pool.close();
     sql.close();
     res.send(activeProducts.recordsets);

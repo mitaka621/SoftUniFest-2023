@@ -46,11 +46,11 @@ function logOut() {
     },
   })
     .then((response) => {
-      // Handle the response here, such as a redirect to the login page
-      window.location.href = "/"; // Redirect to the login page
+
+      window.location.href = "/"; 
     })
     .catch((error) => {
-      // Handle any errors here
+  
       console.error("Error:", error);
     });
 }
@@ -65,7 +65,7 @@ function Buy(e) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      // Include any additional data to be sent in the request body
+      
     }),
   })
     .then((response) => {
@@ -75,7 +75,7 @@ function Buy(e) {
       return response.json();
     })
     .then((data) => {
-      window.location.replace(data.url); // Redirect to the Stripe checkout URL
+      window.location.replace(data.url); 
     })
     .catch((error) => {
       console.error("Error:", error);
