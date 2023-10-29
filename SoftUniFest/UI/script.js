@@ -79,7 +79,6 @@ fetch("http://localhost:3000/businesses")
     });
   })
   .catch((error) => {
-    // Handle any errors here
     console.error("Error:", error);
   });
 async function getStatus(id) {
@@ -120,7 +119,6 @@ function Expand(e) {
         });
       })
       .catch((error) => {
-        // Handle any errors here
         console.error("Error:", error);
       });
   }
@@ -132,14 +130,13 @@ function logOut() {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({}), // You can include any necessary data here
+    body: JSON.stringify({}), 
   })
     .then((response) => {
-      // Handle the response here, such as a redirect to the login page
-      window.location.href = "/"; // Redirect to the login page
+      
+      window.location.href = "/"; 
     })
     .catch((error) => {
-      // Handle any errors here
       console.error("Error:", error);
     });
 }
