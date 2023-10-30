@@ -49,7 +49,7 @@ create table UsersBusineses(
 
 create table Payments(
 	Id int primary key identity,
-	SessionId int not null,
+	SessionId varchar(200) not null,
 	UserId int foreign key references Users(Id)not null,
 	ProductId int foreign key references Products(Id)not null,
 	Quantity int not null,
