@@ -53,10 +53,7 @@ create table Payments(
 	UserId int foreign key references Users(Id)not null,
 	ProductId int foreign key references Products(Id)not null,
 	Quantity int not null,
-	Date datetime2 default GETDATE() not null,
+	DateTimeInitiated datetime2 default GETDATE() not null,
+	DateTimeComplated datetime2,
 	Completed bit default 0
 )
-
-insert into Payments(SessionId, UserId, ProductId, Quantity)
-values
-('tset',1,1,1)
